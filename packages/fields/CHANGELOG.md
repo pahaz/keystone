@@ -1,5 +1,14 @@
 # @keystonejs/fields
 
+## 9.0.1
+
+### Patch Changes
+
+- [`c013d8bc`](https://github.com/keystonejs/keystone/commit/c013d8bc1113b2a31ededc3918ab98c2c99f25f4) [#2425](https://github.com/keystonejs/keystone/pull/2425) Thanks [@Vultraz](https://github.com/Vultraz)! - The `password_is_set` flag is now used to display "Update password" or "Set password" in the Admin UI for `Password` fields.
+
+- Updated dependencies [[`390a7fc3`](https://github.com/keystonejs/keystone/commit/390a7fc3b20169c628dd7aa2e2a4d72b678a345f)]:
+  - @arch-ui/day-picker@0.0.23
+
 ## 9.0.0
 
 ### Major Changes

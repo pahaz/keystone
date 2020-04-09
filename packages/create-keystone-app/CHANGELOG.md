@@ -1,5 +1,11 @@
 # create-keystone-app
 
+## 3.0.1
+
+### Patch Changes
+
+- [`a9bc0cda`](https://github.com/keystonejs/keystone/commit/a9bc0cda879a12b152063875ca9593cdcaf0b33e) [#2693](https://github.com/keystonejs/keystone/pull/2693) Thanks [@Vultraz](https://github.com/Vultraz)! - Trimmed whitespace from database connection string input.
+
 ## 3.0.0
 
 ### Major Changes
