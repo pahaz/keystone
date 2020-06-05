@@ -1,6 +1,6 @@
 const isPromise = require('p-is-promise');
 const Keystone = require('../lib/Keystone');
-const List = require('../lib/List');
+const { List } = require('../lib/ListTypes');
 const { Text, Relationship } = require('@keystonejs/fields');
 
 class MockFieldAdapter {}
@@ -72,6 +72,7 @@ test('new Keystone()', () => {
   const config = {
     name: 'Jest Test',
     adapter: new MockAdapter(),
+    cookieSecret: 'secretForTesting',
   };
   const keystone = new Keystone(config);
   expect(keystone.name).toEqual(config.name);
@@ -81,6 +82,7 @@ test('unique typeDefs', () => {
   const config = {
     adapter: new MockAdapter(),
     name: 'Jest Test for typeDefs',
+    cookieSecret: 'secretForTesting',
   };
   const keystone = new Keystone(config);
 
@@ -95,8 +97,7 @@ test('unique typeDefs', () => {
       hero: { type: MockFieldType },
     },
   });
-  const schemaName = 'public';
-  const schema = keystone.getTypeDefs({ schemaName }).join('\n');
+  const schema = keystone.dumpSchema();
   expect(schema.match(/scalar Foo/g) || []).toHaveLength(1);
   expect(schema.match(/getFoo: Boolean/g) || []).toHaveLength(1);
   expect(schema.match(/mutateFoo: Boolean/g) || []).toHaveLength(1);
@@ -107,6 +108,7 @@ describe('Keystone.createList()', () => {
     const config = {
       adapter: new MockAdapter(),
       name: 'Jest Test',
+      cookieSecret: 'secretForTesting',
     };
     const keystone = new Keystone(config);
 
@@ -140,6 +142,7 @@ describe('Keystone.createList()', () => {
     const config = {
       adapter: new MockAdapter(),
       name: 'Jest Test',
+      cookieSecret: 'secretForTesting',
     };
     const keystone = new Keystone(config);
 
@@ -185,6 +188,7 @@ describe('Keystone.extendGraphQLSchema()', () => {
     const config = {
       adapter: new MockAdapter(),
       name: 'Jest Test',
+      cookieSecret: 'secretForTesting',
     };
     const keystone = new Keystone(config);
     keystone.createList('User', {
@@ -195,8 +199,7 @@ describe('Keystone.extendGraphQLSchema()', () => {
     });
 
     keystone.extendGraphQLSchema({ types: [{ type: 'type FooBar { foo: Int, bar: Float }' }] });
-    const schemaName = 'public';
-    const schema = keystone.getTypeDefs({ schemaName }).join('\n');
+    const schema = keystone.dumpSchema();
     expect(schema.match(/type FooBar {\s*foo: Int\s*bar: Float\s*}/g) || []).toHaveLength(1);
   });
 
@@ -204,6 +207,7 @@ describe('Keystone.extendGraphQLSchema()', () => {
     const config = {
       adapter: new MockAdapter(),
       name: 'Jest Test',
+      cookieSecret: 'secretForTesting',
     };
     const keystone = new Keystone(config);
     keystone.createList('User', {
@@ -221,8 +225,7 @@ describe('Keystone.extendGraphQLSchema()', () => {
         },
       ],
     });
-    const schemaName = 'public';
-    const schema = keystone.getTypeDefs({ schemaName }).join('\n');
+    const schema = keystone.dumpSchema();
     expect(schema.match(/double\(x: Int\): Int/g) || []).toHaveLength(1);
     expect(keystone._customProvider._extendedQueries).toHaveLength(1);
   });
@@ -231,6 +234,7 @@ describe('Keystone.extendGraphQLSchema()', () => {
     const config = {
       adapter: new MockAdapter(),
       name: 'Jest Test',
+      cookieSecret: 'secretForTesting',
     };
     const keystone = new Keystone(config);
     keystone.createList('User', {
@@ -248,8 +252,7 @@ describe('Keystone.extendGraphQLSchema()', () => {
         },
       ],
     });
-    const schemaName = 'public';
-    const schema = keystone.getTypeDefs({ schemaName }).join('\n');
+    const schema = keystone.dumpSchema();
     expect(schema.match(/double\(x: Int\): Int/g) || []).toHaveLength(1);
     expect(keystone._customProvider._extendedMutations).toHaveLength(1);
   });
@@ -327,6 +330,7 @@ describe('Keystone.createItems()', () => {
     const keystone = new Keystone({
       adapter: new MockAdapter(),
       name: 'Jest Test',
+      cookieSecret: 'secretForTesting',
     });
 
     // mock the lists
@@ -357,6 +361,7 @@ describe('Keystone.createItems()', () => {
     const keystone = new Keystone({
       adapter: new MockAdapter(),
       name: 'Jest Test',
+      cookieSecret: 'secretForTesting',
     });
 
     // mock the lists
@@ -385,6 +390,7 @@ describe('Keystone.createItems()', () => {
     const keystone = new Keystone({
       adapter: new MockAdapter(),
       name: 'Jest Test',
+      cookieSecret: 'secretForTesting',
     });
 
     // mock the lists
@@ -416,6 +422,7 @@ describe('Keystone.createItems()', () => {
     const keystone = new Keystone({
       adapter: new MockAdapter(),
       name: 'Jest Test',
+      cookieSecret: 'secretForTesting',
     });
 
     // mock the lists
@@ -447,6 +454,7 @@ describe('keystone.prepare()', () => {
     const config = {
       adapter: new MockAdapter(),
       name: 'Jest Test',
+      cookieSecret: 'secretForTesting',
     };
     const keystone = new Keystone(config);
 
@@ -459,6 +467,7 @@ describe('keystone.prepare()', () => {
     const config = {
       adapter: new MockAdapter(),
       name: 'Jest Test',
+      cookieSecret: 'secretForTesting',
     };
     const keystone = new Keystone(config);
     const { middlewares } = await keystone.prepare();
@@ -470,6 +479,7 @@ describe('keystone.prepare()', () => {
     const config = {
       adapter: new MockAdapter(),
       name: 'Jest Test',
+      cookieSecret: 'secretForTesting',
     };
     const keystone = new Keystone(config);
     const { middlewares } = await keystone.prepare({ apps: undefined });
@@ -481,6 +491,7 @@ describe('keystone.prepare()', () => {
     const config = {
       adapter: new MockAdapter(),
       name: 'Jest Test',
+      cookieSecret: 'secretForTesting',
     };
     const keystone = new Keystone(config);
     const { middlewares } = await keystone.prepare({ apps: [] });
@@ -492,6 +503,7 @@ describe('keystone.prepare()', () => {
     const config = {
       adapter: new MockAdapter(),
       name: 'Jest Test',
+      cookieSecret: 'secretForTesting',
     };
     const keystone = new Keystone(config);
     // For less-brittle tests, we grab the list of middlewares when prepare is
@@ -507,6 +519,7 @@ describe('keystone.prepare()', () => {
     const config = {
       adapter: new MockAdapter(),
       name: 'Jest Test',
+      cookieSecret: 'secretForTesting',
     };
     const keystone = new Keystone(config);
     // For less-brittle tests, we grab the list of middlewares when prepare is
@@ -522,6 +535,7 @@ describe('keystone.prepare()', () => {
     const config = {
       adapter: new MockAdapter(),
       name: 'Jest Test',
+      cookieSecret: 'secretForTesting',
     };
     const keystone = new Keystone(config);
     // For less-brittle tests, we grab the list of middlewares when prepare is
@@ -537,6 +551,7 @@ describe('keystone.prepare()', () => {
     const config = {
       adapter: new MockAdapter(),
       name: 'Jest Test',
+      cookieSecret: 'secretForTesting',
     };
     const middleware = jest.fn(() => {});
     const keystone = new Keystone(config);
@@ -552,6 +567,7 @@ describe('keystone.prepare()', () => {
     const config = {
       adapter: new MockAdapter(),
       name: 'Jest Test',
+      cookieSecret: 'secretForTesting',
     };
     const keystone = new Keystone(config);
     const fn0 = jest.fn(() => {});
@@ -569,6 +585,7 @@ describe('keystone.prepare()', () => {
     const config = {
       adapter: new MockAdapter(),
       name: 'Jest Test',
+      cookieSecret: 'secretForTesting',
     };
     const mockMiddlewareFn = jest.fn(() => {});
     const MockFieldWithMiddleware = {

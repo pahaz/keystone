@@ -1,5 +1,23 @@
 # @keystonejs/build-field-types
 
+## 5.2.8
+
+### Patch Changes
+
+- [`86f3fffb8`](https://github.com/keystonejs/keystone/commit/86f3fffb8aa4de455cf18d7c95f5135a5ad17731) [#2963](https://github.com/keystonejs/keystone/pull/2963) Thanks [@Vultraz](https://github.com/Vultraz)! - Removed unused @babel/plugin-transform-flow-strip-types dependency.
+
+## 5.2.7
+
+### Patch Changes
+
+- [`9e2e0071`](https://github.com/keystonejs/keystone/commit/9e2e00715aff50f2ddfedf3dbc14f390275ff23b) [#2853](https://github.com/keystonejs/keystone/pull/2853) Thanks [@timleslie](https://github.com/timleslie)! - Upgraded dev dependencies.
+
+## 5.2.6
+
+### Patch Changes
+
+- [`96f0c6e9`](https://github.com/keystonejs/keystone/commit/96f0c6e917ecdd02af8da52829608b003219d3ca) [#2845](https://github.com/keystonejs/keystone/pull/2845) Thanks [@timleslie](https://github.com/timleslie)! - Updated patch versions of dependencies.
+
 ## 5.2.5
 
 ### Patch Changes
